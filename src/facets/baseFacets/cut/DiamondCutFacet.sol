@@ -17,11 +17,11 @@ pragma solidity ^0.8.20;
 ################################################################################*/
 
 // Local Interfaces
-import { IDiamondCut } from "src/facets/baseFacets/cut/IDiamondCut.sol";
+import {IDiamondCut} from "src/facets/baseFacets/cut/IDiamondCut.sol";
 
 // Local Libraries
-import { DiamondCutBase } from "src/facets/baseFacets/cut/DiamondCutBase.sol";
-import { Facet } from "src/facets/Facet.sol";
+import {DiamondCutBase} from "src/facets/baseFacets/cut/DiamondCutBase.sol";
+import {Facet} from "src/facets/Facet.sol";
 
 contract DiamondCutFacet is IDiamondCut, DiamondCutBase, Facet {
     /// @notice Adds, replaces, or removes any number of functions and optionally executes a function with delegatecall
@@ -30,11 +30,7 @@ contract DiamondCutFacet is IDiamondCut, DiamondCutBase, Facet {
     /// @param _init The address of the contract or facet to execute _calldata (optional, can be address(0))
     /// @param _calldata A function call, including function selector and arguments. _calldata is executed with
     /// delegatecall on _init (optional, can be empty)
-    function diamondCut(
-        FacetCut[] memory _facetCuts,
-        address _init,
-        bytes calldata _calldata
-    )
+    function diamondCut(FacetCut[] memory _facetCuts, address _init, bytes calldata _calldata)
         external
         override
         onlyDiamondOwner

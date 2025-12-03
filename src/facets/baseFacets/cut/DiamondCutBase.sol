@@ -16,8 +16,8 @@ pragma solidity ^0.8.20;
 
 ################################################################################*/
 
-import { IDiamondCut } from "src/facets/baseFacets/cut/IDiamondCut.sol";
-import { DiamondCutStorage } from "src/facets/baseFacets/cut/DiamondCutStorage.sol";
+import {IDiamondCut} from "src/facets/baseFacets/cut/IDiamondCut.sol";
+import {DiamondCutStorage} from "src/facets/baseFacets/cut/DiamondCutStorage.sol";
 
 /// @notice Thrown when an incorrect facet cut action is provided
 /// @param action The incorrect facet cut action
@@ -52,7 +52,6 @@ error DiamondCut_CannotRemoveImmutableFunction(address facetAddress);
 /// @param init The invalid initialization contract address
 error DiamondCut_InitIsNotContract(address init);
 
-
 /// @notice Thrown when initialization is not allowed
 error DiamondCut_InitializationNotAllowed();
 
@@ -75,20 +74,12 @@ contract DiamondCutBase {
     /// @param _calldata The initialization calldata
     event DiamondCut(IDiamondCut.FacetCut[] _diamondCut, address _init, bytes _calldata);
 
-
     ///@notice Internal function version of diamondCut that applies facet cuts
     ///@dev Applies add, replace, and remove operations in sequence, then initializes if needed
     ///@param _facetCuts Array of facet cuts to apply
     ///@param _init The initialization contract address (optional)
     ///@param _calldata The initialization calldata (optional)
-    function _diamondCut(
-        IDiamondCut.FacetCut[] memory _facetCuts,
-        address _init,
-        bytes memory _calldata
-    )
-        internal
-    {
-
+    function _diamondCut(IDiamondCut.FacetCut[] memory _facetCuts, address _init, bytes memory _calldata) internal {
         // Apply all facet cuts
         for (uint256 facetIndex; facetIndex < _facetCuts.length; facetIndex++) {
             IDiamondCut.FacetCutAction action = _facetCuts[facetIndex].action;
@@ -137,7 +128,6 @@ contract DiamondCutBase {
         // Process each selector
         for (uint256 selectorIndex; selectorIndex < _functionSelectors.length; selectorIndex++) {
             bytes4 selector = _functionSelectors[selectorIndex];
-
 
             address oldFacetAddress = ds.selectorToFacetAndPosition[selector].facetAddress;
             if (oldFacetAddress != address(0)) {
@@ -203,7 +193,7 @@ contract DiamondCutBase {
         if (_functionSelectors.length == 0) {
             revert DiamondCut_SelectorArrayEmpty();
         }
-        if(_facetAddress != address(0)) {
+        if (_facetAddress != address(0)) {
             revert DiamondCut_RemoveFacetAddressMustBeZero(_facetAddress);
         }
         DiamondCutStorage.Layout storage ds = DiamondCutStorage.layout();
@@ -239,9 +229,7 @@ contract DiamondCutBase {
         bytes4 _selector,
         uint96 _selectorPosition,
         address _facetAddress
-    )
-        internal
-    {
+    ) internal {
         ds.selectorToFacetAndPosition[_selector].functionSelectorPosition = _selectorPosition;
         ds.facetFunctionSelectors[_facetAddress].functionSelectors.push(_selector);
         ds.selectorToFacetAndPosition[_selector].facetAddress = _facetAddress;

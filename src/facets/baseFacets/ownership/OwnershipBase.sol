@@ -15,8 +15,8 @@ pragma solidity ^0.8.20;
 
 ################################################################################*/
 
-import { OwnershipStorage } from "./OwnershipStorage.sol";
-import { IERC173 } from "src/interfaces/IERC173.sol";
+import {OwnershipStorage} from "./OwnershipStorage.sol";
+import {IERC173} from "src/interfaces/IERC173.sol";
 
 abstract contract OwnershipBase is IERC173 {
     /// @notice Transfers ownership of the contract to a new address

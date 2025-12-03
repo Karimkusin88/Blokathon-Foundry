@@ -19,12 +19,12 @@ pragma solidity ^0.8.20;
 ################################################################################*/
 
 // Local Interfaces
-import { IDiamondLoupe } from "src/facets/baseFacets/loupe/IDiamondLoupe.sol";
-import { IERC165 } from "src/interfaces/IERC165.sol";
+import {IDiamondLoupe} from "src/facets/baseFacets/loupe/IDiamondLoupe.sol";
+import {IERC165} from "src/interfaces/IERC165.sol";
 
 // Local Libraries
-import { DiamondLoupeBase } from "src/facets/baseFacets/loupe/DiamondLoupeBase.sol";
-import { Facet } from "src/facets/Facet.sol";
+import {DiamondLoupeBase} from "src/facets/baseFacets/loupe/DiamondLoupeBase.sol";
+import {Facet} from "src/facets/Facet.sol";
 
 // ============================================================================
 // DiamondLoupeFacet

@@ -19,8 +19,8 @@ pragma solidity ^0.8.20;
 
 ################################################################################*/
 
-import { ReentrancyGuardUpgradeable } from "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
-import { OwnershipStorage } from "src/facets/baseFacets/ownership/OwnershipStorage.sol";
+import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
+import {OwnershipStorage} from "src/facets/baseFacets/ownership/OwnershipStorage.sol";
 
 /// @notice Thrown when caller is not the diamond owner
 error Diamond_UnauthorizedCaller();

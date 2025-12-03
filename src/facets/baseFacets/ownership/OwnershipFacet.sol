@@ -19,8 +19,8 @@ pragma solidity ^0.8.20;
 ################################################################################*/
 
 // Local Interfaces
-import { OwnershipBase } from "./OwnershipBase.sol";
-import { Facet } from "src/facets/Facet.sol";
+import {OwnershipBase} from "./OwnershipBase.sol";
+import {Facet} from "src/facets/Facet.sol";
 
 contract OwnershipFacet is OwnershipBase, Facet {
     /// @notice Transfers ownership of the contract to a new address

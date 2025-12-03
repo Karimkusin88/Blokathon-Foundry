@@ -15,9 +15,9 @@ pragma solidity ^0.8.20;
 
 ################################################################################*/
 
-import { IDiamondLoupe } from "src/facets/baseFacets/loupe/IDiamondLoupe.sol";
-import { DiamondLoupeStorage } from "src/facets/baseFacets/loupe/DiamondLoupeStorage.sol";
-import { DiamondCutStorage } from "src/facets/baseFacets/cut/DiamondCutStorage.sol";
+import {IDiamondLoupe} from "src/facets/baseFacets/loupe/IDiamondLoupe.sol";
+import {DiamondLoupeStorage} from "src/facets/baseFacets/loupe/DiamondLoupeStorage.sol";
+import {DiamondCutStorage} from "src/facets/baseFacets/cut/DiamondCutStorage.sol";
 
 abstract contract DiamondLoupeBase is IDiamondLoupe {
     /// @notice Retrieves all the facets and their function selectors
