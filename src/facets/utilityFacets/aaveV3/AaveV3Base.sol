@@ -110,25 +110,26 @@ abstract contract AaveV3Base is IAaveV3 {
     /// @param amountToWithdraw Amount of underlying to withdraw (in token decimals)
     function _withdraw(address tokenIn, uint256 amountToWithdraw) internal {
         IPool pool = IPool(AAVE_V3_POOL_ADDRESS);
-
-        // Get reserve data to discover the aToken address
         DataTypes.ReserveData memory reserve = pool.getReserveData(tokenIn);
-        if (reserve.aTokenAddress == address(0)) {
-            revert AaveV3Facet_InvalidATokenAddress();
-        }
-
+        
+        if (reserve.aTokenAddress == address(0)) revert AaveV3Facet_InvalidATokenAddress();
+        
         IERC20 aToken = IERC20(reserve.aTokenAddress);
-
-        // Ensure sufficient aToken balance for requested withdrawal
         uint256 aTokenBalance = aToken.balanceOf(address(this));
+    
+        // LOGIKA PERBAIKAN: Jika input 0, otomatis set ke semua saldo yang ada
+        if (amountToWithdraw == 0) {
+            amountToWithdraw = aTokenBalance;
+        }
+    
+        // Cek biar nggak InvalidAmount (0) ke Aave
+        if (amountToWithdraw == 0) revert AaveV3Facet_InsufficientATokenBalance();
+    
         if (aTokenBalance < amountToWithdraw) {
             revert AaveV3Facet_InsufficientATokenBalance();
         }
-
-        // Withdraw underlying tokens to this contract
+    
         pool.withdraw({asset: tokenIn, amount: amountToWithdraw, to: address(this)});
-
-        // Emit event with aToken balance before withdrawal (useful for tracking)
         emit AaveV3FacetTokensWithdrawn(tokenIn, aTokenBalance, address(this));
     }
 }
