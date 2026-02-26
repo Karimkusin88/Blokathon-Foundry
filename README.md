@@ -1,3 +1,12 @@
+## 🚀 Technical Highlights (Cohort 1 Submission)
+
+This repository includes a production-ready implementation of **Aave V3 Facets** using the **Diamond Pattern (EIP-2535)**. Key features include:
+
+* **Precision Loss Handling:** Implemented logic to handle the `1-wei` rounding issue common in Aave V3 supply/withdraw cycles, ensuring smooth "Withdraw All" functionality.
+* **Security & Validation:** Integrated strict checks for `InvalidToken`, `InvalidAmount`, and `InsufficientBalance` to prevent common DeFi vulnerabilities.
+* **Arbitrum Fork Testing:** All features are verified using **Foundry** via mainnet forking on Arbitrum One to ensure 1:1 compatibility with live protocol states.
+* **Modular Architecture:** Designed to be easily integrated into the BLOK Capital treasury management system.
+
 # Blok-a-Thon: Facet Building Hackathon
 
 Welcome to the **Blok-a-Thon**, a Blok Capital hackathon focused on building modular smart contract facets using the Diamond Proxy pattern (EIP-2535). This repository provides a ready-to-use Foundry setup with a fully configured Diamond Proxy architecture.
